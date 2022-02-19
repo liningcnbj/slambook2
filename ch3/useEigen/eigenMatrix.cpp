@@ -86,11 +86,12 @@ int main(int argc, char **argv) {
   // 我们求解 matrix_NN * x = v_Nd 这个方程
   // N的大小在前边的宏里定义，它由随机数生成
   // 直接求逆自然是最直接的，但是求逆运算量大
-
+  srand((unsigned)time(NULL));// ln保证随即性
   Matrix<double, MATRIX_SIZE, MATRIX_SIZE> matrix_NN
       = MatrixXd::Random(MATRIX_SIZE, MATRIX_SIZE);
   matrix_NN = matrix_NN * matrix_NN.transpose();  // 保证半正定
   Matrix<double, MATRIX_SIZE, 1> v_Nd = MatrixXd::Random(MATRIX_SIZE, 1);
+//   cout << "ln1:matrix_NN = " << matrix_NN << endl;
 
   clock_t time_stt = clock(); // 计时
   // 直接求逆
